@@ -1,5 +1,4 @@
 import { Menu } from "lucide-react"
-import { Link } from "react-router"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -8,6 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import PropTypes from "prop-types"
 
 export function HamburgerMenu({ items = [] }) {
   return (
@@ -24,16 +24,25 @@ export function HamburgerMenu({ items = [] }) {
         </SheetHeader>
         <nav className="flex flex-col gap-2 p-4">
           {items.map((item, index) => (
-            <Link
+            <a
               key={index}
-              to={item.href}
+              href={item.href}
               className="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
       </SheetContent>
     </Sheet>
   )
+}
+
+HamburgerMenu.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+    })
+  ),
 }
