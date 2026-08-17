@@ -1,16 +1,13 @@
+import { Outlet } from 'react-router'
 import './App.css'
-import { EventPage } from './pages/EventsPage'
-import { HomePage } from './pages/HomePage'
+import { NavBar } from './components/NavBar'
 
 export default function App() {
   return (
     <div>
-      <header> 
-        <h1>Sistema de eventos</h1>
-      </header>
-      <main>
-        <HomePage />
-        <EventPage />
+      <NavBar />
+      <main className = "w-full p-4">
+        <Outlet />
       </main>
     </div>
   )
