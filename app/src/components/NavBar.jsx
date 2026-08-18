@@ -1,13 +1,16 @@
 import { Link, NavLink } from "react-router"
 import { HamburgerMenu } from "./HamburgerMenu"
+import { useArrowKeyNav } from "../hooks/useArrowKeyNav"
 
 const navLinks = [
     { label: 'Inicio', href: '/' },
-    { label: 'Ejemplo 1', href: '/example1' },
+    { label: 'Guía WCAG', href: '/guia' },
     { label: 'Importancia', href: '/importancia' }
 ]
 
 export function NavBar(){
+    const navRef = useArrowKeyNav({ orientation: "horizontal" })
+
     return (
         <header className="site-header flex items-center justify-between gap-4 bg-blue-800 px-4 py-3 text-white">
             <div className="flex items-center gap-2">
@@ -22,7 +25,7 @@ export function NavBar(){
                     Accesibilidad
                 </Link>
             </div>
-            <nav aria-label="Navegación principal" className="hidden md:flex gap-4">
+            <nav ref={navRef} aria-label="Navegación principal" className="hidden md:flex gap-4">
                 {navLinks.map((item) => (
                     <NavLink
                         key={item.href}

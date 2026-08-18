@@ -5,7 +5,9 @@ export function PersonList({ persons }) {
     return (
         <div role="list" className="flex flex-col gap-4">
             {persons.map((item) => (
-                <PersonCard key={item.id} person={item} />
+                <div role="listitem" key={item.id}>
+                    <PersonCard person={item} />
+                </div>
             ))}
         </div>
     )

@@ -31,7 +31,7 @@ export function PersonCard({ person }) {
             )}
             <div className="flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-blue-800">{nombreCompleto}</h3>
-                <p className="text-sm text-blue-500 font-medium mt-1">{person.especialidad.nombre}</p>
+                <p className="text-sm text-blue-700 font-medium mt-1">{person.especialidad.nombre}</p>
                 <p className="mt-3 text-gray-600 leading-relaxed">{person.descripcion}</p>
             </div>
         </article>

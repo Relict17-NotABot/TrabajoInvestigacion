@@ -19,7 +19,7 @@ export function ImportanciaPage() {
             </article>
 
             <aside aria-labelledby="beneficios-heading" className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <h3 id="beneficios-heading" className="sr-only">Beneficios de la accesibilidad</h3>
+                <h2 id="beneficios-heading" className="sr-only">Beneficios de la accesibilidad</h2>
                 {[
                     "Accesible para personas con discapacidad",
                     "Permite mejorar la experiencia del usuario",

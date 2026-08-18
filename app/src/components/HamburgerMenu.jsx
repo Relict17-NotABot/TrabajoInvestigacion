@@ -8,32 +8,33 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import PropTypes from "prop-types"
-import { useId, useState } from "react"
+import { useState } from "react"
 import { NavLink } from "react-router"
+import { useArrowKeyNav } from "../hooks/useArrowKeyNav"
 
 export function HamburgerMenu({ items = [] }) {
   const [isOpen, setIsOpen] = useState(false)
-  const menuId = useId()
+  const navRef = useArrowKeyNav({ orientation: "vertical" })
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="size-11 text-white hover:bg-blue-700 hover:text-white focus-visible:ring-white"
-          aria-expanded={isOpen}
-          aria-controls={menuId}
-          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
-        >
-          <Menu aria-hidden="true" className="h-5 w-5" />
-        </Button>
+      <SheetTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-11 text-white hover:bg-blue-700 hover:text-white focus-visible:ring-white"
+            aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          />
+        }
+      >
+        <Menu aria-hidden="true" className="h-5 w-5" />
       </SheetTrigger>
-      <SheetContent side="left" id={menuId}>
+      <SheetContent side="left">
         <SheetHeader>
           <SheetTitle>Menú</SheetTitle>
         </SheetHeader>
-        <nav aria-label="Navegación principal móvil" className="flex flex-col gap-2 p-4">
+        <nav ref={navRef} aria-label="Navegación principal móvil" className="flex flex-col gap-2 p-4">
           {items.map((item) => (
             <NavLink
               key={item.href}

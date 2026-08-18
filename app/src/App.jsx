@@ -3,6 +3,16 @@ import { NavBar } from './components/NavBar'
 import { BreadCrumbs } from './components/BreadCrumbs'
 import { useRef, useEffect } from 'react'
 
+const TITULOS_POR_RUTA = {
+  '/': 'Inicio',
+  '/guia': 'Guía WCAG: los 4 principios',
+  '/guia/checklist': 'Checklist aplicado en este sitio',
+  '/importancia': 'Importancia de la Investigación',
+  '/importancia/impacto': 'Impacto en Usuarios Reales',
+}
+
+const NOMBRE_SITIO = 'Accesibilidad - Trabajo de Investigación'
+
 export default function App() {
   const location = useLocation()
   const mainRef = useRef(null)
@@ -17,6 +27,12 @@ export default function App() {
     }
 
     mainRef.current?.focus()
+  }, [location.pathname])
+
+  // WCAG 2.4.2 Page Titled: cada ruta necesita un <title> distinto y descriptivo.
+  useEffect(() => {
+    const titulo = TITULOS_POR_RUTA[location.pathname]
+    document.title = titulo ? `${titulo} | ${NOMBRE_SITIO}` : NOMBRE_SITIO
   }, [location.pathname])
 
   return (

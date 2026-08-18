@@ -49,7 +49,7 @@ export function ImpactoPage() {
             </header>
 
             <article aria-labelledby="impacto-desc-heading" className="space-y-4 mb-10">
-                <h3 id="impacto-desc-heading" className="sr-only">Descripción del impacto</h3>
+                <h2 id="impacto-desc-heading" className="sr-only">Descripción del impacto</h2>
                 <div className="bg-white rounded-xl shadow-lg shadow-blue-100/50 p-6 border border-blue-50">
                     <p className="text-gray-600 leading-relaxed">
                         El impacto recae directamente en usuarios reales. Las personas ciegas o con baja visión
@@ -91,7 +91,7 @@ export function ImpactoPage() {
             </article>
 
             <section aria-labelledby="equipo-heading" className="mb-8">
-                <h3 id="equipo-heading" className="text-2xl font-bold text-blue-800 mb-2">Nuestro Equipo</h3>
+                <h2 id="equipo-heading" className="text-2xl font-bold text-blue-800 mb-2">Nuestro Equipo</h2>
                 <p className="text-gray-500">
                     Estas son algunas de las personas que se benefician de las prácticas de accesibilidad
                     que implementamos en nuestras aplicaciones:

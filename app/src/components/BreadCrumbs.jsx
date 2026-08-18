@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router";
+import { useArrowKeyNav } from "../hooks/useArrowKeyNav";
 
 const nombres = {
-  example1: "Ejemplo 1",
+  guia: "Guía WCAG",
+  checklist: "Checklist",
   importancia: "Importancia",
   impacto: "Impacto",
 };
@@ -9,9 +11,10 @@ const nombres = {
 export function BreadCrumbs() {
   const location = useLocation();
   const rutas = location.pathname.split("/").filter((r) => r !== "");
+  const navRef = useArrowKeyNav({ orientation: "horizontal" });
 
   return (
-    <nav aria-label="Ruta de navegación" className="mb-6">
+    <nav ref={navRef} aria-label="Ruta de navegación" className="mb-6">
       <ol className="flex list-none flex-wrap gap-2 p-0 text-sm">
         <li>
           {rutas.length === 0 ? (
