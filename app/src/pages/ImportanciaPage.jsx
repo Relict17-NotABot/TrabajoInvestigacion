@@ -2,23 +2,24 @@ import { NavLink } from "react-router"
 
 export function ImportanciaPage() {
     return (
-        <section className="max-w-4xl mx-auto">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-blue-800 mb-4">
+        <section aria-labelledby="importancia-heading" className="max-w-4xl mx-auto">
+            <header className="mb-8">
+                <h1 id="importancia-heading" className="text-3xl font-bold text-blue-800 mb-4">
                     Importancia de la Investigación
-                </h2>
-                <div className="w-16 h-1 bg-blue-500 rounded-full"></div>
-            </div>
+                </h1>
+                <div className="w-16 h-1 bg-blue-500 rounded-full" />
+            </header>
 
-            <div className="bg-white rounded-xl shadow-lg shadow-blue-100/50 p-8 mb-8">
+            <article className="bg-white rounded-xl shadow-lg shadow-blue-100/50 p-8 mb-8">
                 <p className="text-gray-600 text-lg leading-relaxed">
                     Para los desarrolladores es importante porque la navegación funciona como parte del
                     esqueleto de la experiencia. Si el menú llega a ser confuso o el foco desaparece,
                     el resto de la interfaz puede dejar de ser fácil de utilizar.
                 </p>
-            </div>
+            </article>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <aside aria-labelledby="beneficios-heading" className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <h3 id="beneficios-heading" className="sr-only">Beneficios de la accesibilidad</h3>
                 {[
                     "Accesible para personas con discapacidad",
                     "Permite mejorar la experiencia del usuario",
@@ -38,12 +39,13 @@ export function ImportanciaPage() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </aside>
 
-            <NavLink to="/importancia/impacto">
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 shadow-lg shadow-blue-300/50 hover:shadow-xl hover:shadow-blue-400/50 transition-all duration-300 cursor-pointer">
-                    Ver Impacto en Usuarios Reales
-                </button>
+            <NavLink
+                to="/importancia/impacto"
+                className="inline-flex min-h-11 items-center rounded-lg bg-blue-700 px-6 py-3 font-medium text-white shadow-lg shadow-blue-300/50 transition-all duration-300 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-400/50 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+            >
+                Ver Impacto en Usuarios Reales
             </NavLink>
         </section>
     )

@@ -4,6 +4,7 @@ import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import importPlugin from "eslint-plugin-import";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default [
   {
@@ -34,7 +35,8 @@ export default [
       react: reactPlugin,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-      import: importPlugin
+      import: importPlugin,
+      "jsx-a11y": jsxA11y
     },
 
     settings: {
@@ -53,6 +55,7 @@ export default [
     },
 
     rules: {
+      ...jsxA11y.flatConfigs.recommended.rules,
       "no-undef": "error",
       "no-unused-vars": [
         "error",
@@ -93,6 +96,14 @@ export default [
     files: ["vite.config.js"],
     rules: {
       "import/no-unresolved": "off"
+    }
+  },
+
+  {
+    // Componentes base generados: reenvían las props del primitivo subyacente.
+    files: ["src/components/ui/**/*.{js,jsx}"],
+    rules: {
+      "react/prop-types": "off"
     }
   }
 ];

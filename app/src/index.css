@@ -14,7 +14,7 @@ body {
 * {
   box-sizing: border-box;
 }
-header {
+.site-header {
   background-color: #1f3c88;
   color: white;
   padding: 1rem 2rem;

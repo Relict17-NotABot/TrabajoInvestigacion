@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router";
 
 const nombres = {
+  example1: "Ejemplo 1",
   importancia: "Importancia",
-  tecnicas: "Técnicas",
+  impacto: "Impacto",
 };
 
 export function BreadCrumbs() {
@@ -10,10 +11,19 @@ export function BreadCrumbs() {
   const rutas = location.pathname.split("/").filter((r) => r !== "");
 
   return (
-    <nav aria-label="Breadcrumb">
-      <ol style={{ display: "flex", gap: "8px", listStyle: "none", padding: 0 }}>
+    <nav aria-label="Ruta de navegación" className="mb-6">
+      <ol className="flex list-none flex-wrap gap-2 p-0 text-sm">
         <li>
-          <Link to="/">Inicio</Link>
+          {rutas.length === 0 ? (
+            <span aria-current="page" className="font-semibold text-blue-950">Inicio</span>
+          ) : (
+            <Link
+              to="/"
+              className="rounded-sm text-blue-800 underline underline-offset-4 hover:text-blue-950 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+            >
+              Inicio
+            </Link>
+          )}
         </li>
         {rutas.map((ruta, index) => {
           const rutaCompleta = "/" + rutas.slice(0, index + 1).join("/");
@@ -21,12 +31,17 @@ export function BreadCrumbs() {
           const nombreVisible = nombres[ruta] || ruta;
 
           return (
-            <li key={rutaCompleta} style={{ display: "flex", gap: "8px" }}>
+            <li key={rutaCompleta} className="flex gap-2">
               <span aria-hidden="true">/</span>
               {esUltima ? (
-                <span aria-current="page">{nombreVisible}</span>
+                <span aria-current="page" className="font-semibold text-blue-950">{nombreVisible}</span>
               ) : (
-                <Link to={rutaCompleta}>{nombreVisible}</Link>
+                <Link
+                  to={rutaCompleta}
+                  className="rounded-sm text-blue-800 underline underline-offset-4 hover:text-blue-950 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                >
+                  {nombreVisible}
+                </Link>
               )}
             </li>
           );

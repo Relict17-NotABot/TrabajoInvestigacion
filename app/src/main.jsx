@@ -1,5 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React, { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './index.css'
 import App from './App.jsx'
@@ -8,7 +8,13 @@ import { Example1Page } from './pages/Example1Page'
 import { ImportanciaPage } from './pages/ImportanciaPage'
 import { ImpactoPage } from './pages/ImpactoPage'
 
-createRoot(document.getElementById('root')).render(
+if (import.meta.env.DEV) {
+  import('@axe-core/react').then(({ default: axe }) => {
+    axe(React, ReactDOM, 1000)
+  })
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>

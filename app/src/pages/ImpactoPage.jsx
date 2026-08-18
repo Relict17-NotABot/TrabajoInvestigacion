@@ -40,15 +40,16 @@ export function ImpactoPage() {
     }
 
     return (
-        <section className="max-w-4xl mx-auto">
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-blue-800 mb-4">
+        <section aria-labelledby="impacto-heading" className="max-w-4xl mx-auto">
+            <header className="mb-8">
+                <h1 id="impacto-heading" className="text-3xl font-bold text-blue-800 mb-4">
                     Impacto en Usuarios Reales
-                </h2>
-                <div className="w-16 h-1 bg-blue-500 rounded-full"></div>
-            </div>
+                </h1>
+                <div className="w-16 h-1 bg-blue-500 rounded-full" />
+            </header>
 
-            <div className="space-y-4 mb-10">
+            <article aria-labelledby="impacto-desc-heading" className="space-y-4 mb-10">
+                <h3 id="impacto-desc-heading" className="sr-only">Descripción del impacto</h3>
                 <div className="bg-white rounded-xl shadow-lg shadow-blue-100/50 p-6 border border-blue-50">
                     <p className="text-gray-600 leading-relaxed">
                         El impacto recae directamente en usuarios reales. Las personas ciegas o con baja visión
@@ -87,16 +88,16 @@ export function ImpactoPage() {
                         usuarios y situaciones.
                     </p>
                 </div>
-            </div>
+            </article>
 
-            <div className="mb-8">
-                <h3 className="text-2xl font-bold text-blue-800 mb-2">Nuestro Equipo</h3>
+            <section aria-labelledby="equipo-heading" className="mb-8">
+                <h3 id="equipo-heading" className="text-2xl font-bold text-blue-800 mb-2">Nuestro Equipo</h3>
                 <p className="text-gray-500">
                     Estas son algunas de las personas que se benefician de las prácticas de accesibilidad
                     que implementamos en nuestras aplicaciones:
                 </p>
-                <div className="w-16 h-1 bg-blue-500 rounded-full mt-4"></div>
-            </div>
+                <div className="w-16 h-1 bg-blue-500 rounded-full mt-4" />
+            </section>
 
             <PersonList persons={employees} />
         </section>
