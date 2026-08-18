@@ -12,7 +12,7 @@ export function HomePage(){
                 </p>
                 <NavLink to="/example1">
                     <Button aria-label="Navegacion Accesible" tabIndex={1} className="mt-4 ">
-                        Navegacion Accesible
+                        
                     </Button>
                 </NavLink>
                 

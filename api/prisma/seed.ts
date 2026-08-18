@@ -181,7 +181,7 @@ async function main() {
     // Usuario administrador
     const passwordHash = await bcrypt.hash("Admin12345", 10);
 
-    await prisma.usuario.upsert({
+    const adminUser = await prisma.usuario.upsert({
         where: { correo: "admin@citas.com" },
         update: {},
         create: {
@@ -195,6 +195,110 @@ async function main() {
             rolId: administrador.id,
         },
     });
+
+    // Empleados de ejemplo para la página de Impacto
+    const empleadoRol = await prisma.rol.findUnique({
+        where: { nombre: "Empleado" },
+    });
+
+    const generalEspecialidad = await prisma.especialidad.findUnique({
+        where: { nombre: "General" },
+    });
+
+    // Crear servicio base si no existe
+    const servicioBase = await prisma.servicio.upsert({
+        where: { nombre: "Consulta General" },
+        update: {},
+        create: {
+            nombre: "Consulta General",
+            descripcion: "Servicio de consultoría general para clientes.",
+            precioBase: 50000.00,
+            duracionMinutos: 60,
+            activo: true,
+            especialidadId: generalEspecialidad!.id,
+        },
+    });
+
+    const empleadosData = [
+        {
+            nombre: "María",
+            primerApellido: "Fernández",
+            segundoApellido: "López",
+            correo: "maria.fernandez@citas.com",
+            telefono: "88881111",
+            codigo: "EMP-001",
+            descripcion: "Desarrolladora Frontend con passión por la accesibilidad web. A pesar de su ceguera parcial, utiliza lectores de pantalla y navegación por teclado para crear interfaces inclusivas.",
+        },
+        {
+            nombre: "Carlos",
+            primerApellido: "Mora",
+            segundoApellido: "Rojas",
+            correo: "carlos.mora@citas.com",
+            telefono: "88882222",
+            codigo: "EMP-002",
+            descripcion: "Diseñador UX comprometido con la experiencia de todos los usuarios. Con baja visión, entiende firsthand la importancia de contraste, tipografía legible y navegación clara.",
+        },
+        {
+            nombre: "Laura",
+            primerApellido: "Torres",
+            segundoApellido: "García",
+            correo: "laura.torres@citas.com",
+            telefono: "88883333",
+            codigo: "EMP-003",
+            descripcion: "Ingeniera de Software que supera barreras cada día. Su discapacidad motora no le impide liderar proyectos completos cuando la interfaz le permite navegar con teclado o voice control.",
+        },
+        {
+            nombre: "Pedro",
+            primerApellido: "Sánchez",
+            segundoApellido: "Vargas",
+            correo: "pedro.sanchez@citas.com",
+            telefono: "88884444",
+            codigo: "EMP-004",
+            descripcion: "Analista de Datos con condiciones cognitivas que hacen que la predictibilidad sea esencial. Cuando la navegación es consistente y las instrucciones claras, su rendimiento supera expectativas.",
+        },
+        {
+            nombre: "Ana",
+            primerApellido: "Rojas",
+            segundoApellido: "Silva",
+            correo: "ana.rojas@citas.com",
+            telefono: "88885555",
+            codigo: "EMP-005",
+            descripcion: "Project Manager que comprende que la accesibilidad beneficia a todos. Un día su brazo está lesionado, otro necesita zoom alto. La accesibilidad no es solo para discapacidades permanentes.",
+        },
+    ];
+
+    for (const emp of empleadosData) {
+        const usuario = await prisma.usuario.upsert({
+            where: { correo: emp.correo },
+            update: {},
+            create: {
+                nombre: emp.nombre,
+                primerApellido: emp.primerApellido,
+                segundoApellido: emp.segundoApellido,
+                correo: emp.correo,
+                telefono: emp.telefono,
+                passwordHash,
+                activo: true,
+                rolId: empleadoRol!.id,
+            },
+        });
+
+        await prisma.empleado.upsert({
+            where: { codigoEmpleado: emp.codigo },
+            update: {},
+            create: {
+                usuarioId: usuario.id,
+                especialidadId: generalEspecialidad!.id,
+                codigoEmpleado: emp.codigo,
+                descripcion: emp.descripcion,
+                activo: true,
+                servicios: {
+                    connect: [{ id: servicioBase.id }],
+                },
+            },
+        });
+    }
+
     console.log("Seeder ejecutado correctamente.");
 }
 

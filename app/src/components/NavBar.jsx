@@ -3,7 +3,8 @@ import { HamburgerMenu } from "./HamburgerMenu"
 
 const navLinks = [
     { label: 'Inicio', href: '/' },
-    { label: 'Ejemplo 1', href: '/example1' }
+    { label: 'Ejemplo 1', href: '/example1' },
+    { label: 'Importancia', href: '/importancia' }
 ]
 
 export function NavBar(){
@@ -15,7 +16,7 @@ export function NavBar(){
                 </div>
                 <h1 className="text-zinc-100 font-bold">Accesibilidad</h1>
             </div>
-            <nav>
+            <nav aria-label="Navegación principal" className="hidden md:flex gap-4">
                 {navLinks.map((item, index) => (
                     <Link
                         key={index}
